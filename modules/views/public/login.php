@@ -1,3 +1,7 @@
+<?php 
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+?>
 <!DOCTYPE html>
 <html class="login-bg">
 <head>
@@ -33,25 +37,35 @@
 
     <div class="row-fluid login-wrapper">
         <a class="brand" href="index.html"></a>
-
+        <?php $form = ActiveForm::begin([
+            'fieldConfig'=>[
+                'template'=>'{input}{error}',
+            ],
+        ]); ?>
         <div class="span4 box">
             <div class="content-wrap">
                 <h6>慕课商城 - 后台管理</h6>
-                <input class="span12" type="text" placeholder="管理员账号" />
-                <input class="span12" type="password" placeholder="管理员密码" />
+                <?php echo $form->field($model,'adminuser')->textInput(['class'=>'span12','placeholder'=>'管理员账号']); ?>
+                <?php echo $form->field($model,'adminpass')->textInput(['class'=>'span12','placeholder'=>'管理员密码']); ?>
+
                 <a href="#" class="forgot">忘记密码?</a>
-                <div class="remember">
+                <?php echo $form->field($model,'rememberMe')->checkbox([
+                    'id' => 'remember-me',
+                    'template' => '<div class="remember">{input}<label for="remember-me">记住我</label></div>'
+                ]) ?>
+                <!-- <div class="remember">
                     <input id="remember-me" type="checkbox" />
                     <label for="remember-me">记住我</label>
-                </div>
-                <a class="btn-glow primary login" href="index.html">登录</a>
+                </div> -->
+                <?php echo Html::submitButton('登录',['class'=>'btn-glow primary login']); ?>
+                <!-- <a class="btn-glow primary login" href="index.html">登录</a> -->
             </div>
         </div>
-
-        <div class="span4 no-account">
+        <?php $form = ActiveForm::end(); ?>
+        <!-- <div class="span4 no-account">
             <p>没有账户?</p>
             <a href="signup.html">注册</a>
-        </div>
+        </div> -->
     </div>
 
 	<!-- scripts -->
