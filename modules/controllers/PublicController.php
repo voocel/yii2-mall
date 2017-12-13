@@ -6,6 +6,9 @@ use app\modules\models\Admin;
 use Yii;
 class PublicController extends Controller{
     public function actionLogin(){
+        if(Yii::$app->session['admin']['isLogin']){
+            $this->redirect(['default/index']);
+        }
         $this->layout = false;
         $model = new Admin;
         if(Yii::$app->request->isPost){
@@ -18,4 +21,15 @@ class PublicController extends Controller{
         
         return $this->render('login',['model'=>$model]);
     }
+
+    public function actionLogout(){
+        Yii::$app->session->removeAll();
+        if(!Yii::$app->session['admin']['isLogin']){
+            $this->redirect(['public/login']);
+            Yii::$app->end();
+        }
+        $this->goback();
+    }
+        
+    
 }
