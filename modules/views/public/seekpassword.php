@@ -44,20 +44,13 @@ use yii\helpers\Html;
         ]); ?>
         <div class="span4 box">
             <div class="content-wrap">
-                <h6>慕课商城 - 后台管理</h6>
+                <h6>慕课商城 - 找回密码</h6>
                 <?php echo $form->field($model,'adminuser')->textInput(['class'=>'span12','placeholder'=>'管理员账号']); ?>
-                <?php echo $form->field($model,'adminpass')->passwordInput(['class'=>'span12','placeholder'=>'管理员密码']); ?>
+                <?php echo $form->field($model,'adminemail')->textInput(['class'=>'span12','placeholder'=>'管理员邮箱']); ?>
 
-                <a href="<?php echo yii\helpers\Url::to(['public/seekpassword']); ?>" class="forgot">忘记密码?</a>
-                <?php echo $form->field($model,'rememberMe')->checkbox([
-                    'id' => 'remember-me',
-                    'template' => '<div class="remember">{input}<label for="remember-me">记住我</label></div>'
-                ]) ?>
-                <!-- <div class="remember">
-                    <input id="remember-me" type="checkbox" />
-                    <label for="remember-me">记住我</label>
-                </div> -->
-                <?php echo Html::submitButton('登录',['class'=>'btn-glow primary login']); ?>
+                <a href="<?php echo yii\helpers\Url::to(['public/login']); ?>" class="forgot">返回登录</a>
+                
+                <?php echo Html::submitButton('找回密码',['class'=>'btn-glow primary login']); ?>
                 <!-- <a class="btn-glow primary login" href="index.html">登录</a> -->
             </div>
         </div>

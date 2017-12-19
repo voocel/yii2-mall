@@ -30,6 +30,12 @@ class PublicController extends Controller{
         }
         $this->goback();
     }
+
+    public function actionSeekpassword(){
+        $this->layout = false;
+        $model = new Admin;
+        return $this->render('seekpassword',['model'=>$model]);
+    }
         
     
 }
