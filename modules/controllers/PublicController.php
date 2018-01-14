@@ -34,6 +34,10 @@ class PublicController extends Controller{
     public function actionSeekpassword(){
         $this->layout = false;
         $model = new Admin;
+        if(Yii::$app->request->isPost){
+            $post = Yii::$app->request->post();
+            $model->seekPass($post);
+        }
         return $this->render('seekpassword',['model'=>$model]);
     }
         
