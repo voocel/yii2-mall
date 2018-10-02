@@ -136,8 +136,8 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="personal-info.html">个人信息管理</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="<?php echo yii\helpers\Url::to(['manage/changeemail']) ?>">个人信息管理</a></li>
+                        <li><a href="<?php echo yii\helpers\Url::to(['manage/changepass']) ?>">修改密码</a></li>
                         <li><a href="#">订单管理</a></li>
                     </ul>
                 </li>
@@ -174,6 +174,17 @@
                     <i class="icon-signal"></i>
                     <span>统计</span>
                 </a>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-user"></i>
+                    <span>管理员管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="<?php echo yii\helpers\Url::to(['manage/managers']); ?>">管理员列表</a></li>
+                    <li><a href="<?php echo yii\helpers\Url::to(['manage/reg']); ?>">加入新管理员</a></li>
+                </ul>
             </li>
             <li>
                 <a class="dropdown-toggle" href="#">
