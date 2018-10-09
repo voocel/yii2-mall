@@ -1,8 +1,9 @@
 <?php
 
 namespace app\models;
+use yii\db\ActiveRecord;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+class User extends ActiveRecord
 {
     public $id;
     public $username;
@@ -101,4 +102,41 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
+
+    /**
+     * 根据userid获取关联表profile
+     */
+    public function getProfile(){
+        return $this->hasOne(Profile::className(),['userid'=>'userid']);
+    }
+
+    public function regByMail($data){
+        $data['User']['username'] = 'test_'.uniqid();
+        $data['User']['userpass'] = uniqid();
+        $this->scenario = 'regbymail';
+        if($this->load($data) && $this->validate()){
+            $mailer = Yii::$app->mailer->compose('createuser');
+            $mailer->setFrom('naivman@163.com');
+            $mailer->setTo($data['User']['useremail']);
+            $mailer->setSubject("恭喜xxx-注册成为新会员");
+            if($mailer->send() && $this->reg($data,'regbymail')){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function reg($data,$scenario='reg'){
+        $this->scenario = $scenario;
+        if($this->load($data) && $this->validate()){
+            $this->createtime = time();
+            $this->userpass = md5($this->userpass);
+            if($this->save(false)){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
 }
