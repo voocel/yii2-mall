@@ -204,6 +204,27 @@
             </li>
             <li>
                 <a class="dropdown-toggle" href="#">
+                    <i class="icon-glass"></i>
+                    <span>商品管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                <li><a href="<?php echo yii\helpers\Url::to(['product/list']); ?>">商品列表</a></li>
+                <li><a href="<?php echo yii\helpers\Url::to(['product/add']); ?>">添加商品</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>订单管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                <li><a href="<?php echo yii\helpers\Url::to(['order/list']); ?>">订单列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
                     <i class="icon-edit"></i>
                     <span>表单</span>
                     <i class="icon-chevron-down"></i>
