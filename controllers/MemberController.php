@@ -1,8 +1,10 @@
 <?php
 namespace app\controllers;
-use yii\web\Controller;
+use app\controllers\CommonController;
+use app\models\User;
+use Yii;
 
-class MemberController extends Controller{
+class MemberController extends CommonController{
 
     public function actionAuth(){
         $this->layout='layout2';
@@ -22,6 +24,7 @@ class MemberController extends Controller{
         if(isset(Yii::$app->session['isLogin'])){
             return $this->goBack(Yii::$app->request->referrer);
         }
+        return $this->goBack(Yii::$app->request->referrer);
     }
 
     public function actionReg(){
@@ -30,7 +33,7 @@ class MemberController extends Controller{
         if(Yii::$app->request->isPost){
             $post = Yii::$app->request->post();
             if($model->regByMail($post)){
-                return $this->session->setFlash('info','电子邮件发送成功!');
+                Yii::$app->session->setFlash('info','电子邮件发送成功!');
             }
         }
         return $this->render('auth',['model'=>$model]);

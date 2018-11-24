@@ -1,8 +1,9 @@
 <?php
 namespace app\controllers;
-use yii\web\Controller;
 
-class OrderController extends Controller{
+use app\controllers\CommonController;
+
+class OrderController extends CommonController{
 
     public function actionIndex(){
         $this->layout='layout2';

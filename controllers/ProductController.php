@@ -1,8 +1,11 @@
 <?php
 namespace app\controllers;
-use yii\web\Controller;
 
-class ProductController extends Controller{
+use app\controllers\CommonController;
+use app\models\Product;
+use Yii;
+
+class ProductController extends CommonController{
 
     public function actionIndex()
     {

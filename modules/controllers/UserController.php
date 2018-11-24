@@ -19,6 +19,21 @@ class UserController extends Controller{
         return $this->render('users',['users'=>$users,'pager'=>$pager]);
     }
 
+    public function actionReg()
+    {
+        $this->layout = "layout1";
+        $model = new User;
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            if ($model->reg($post)) {
+                Yii::$app->session->setFlash('info', '添加成功');
+            }
+        }
+        $model->userpass = '';
+        $model->repass = '';
+        return $this->render("reg", ['model' => $model]);
+    }
+    
     public function actionDel(){
         try{
             $userid = (int)Yii::$app->request->get('userid');
